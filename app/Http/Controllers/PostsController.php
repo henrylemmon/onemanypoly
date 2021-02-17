@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    use Commentable;
-
-    protected $model = Post::class;
-
     /**
      * Display a listing of the resource.
      *

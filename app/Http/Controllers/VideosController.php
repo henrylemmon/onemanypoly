@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class VideosController extends Controller
 {
-    use Commentable;
-
-    protected $model = Video::class;
-
     /**
      * Display a listing of the resource.
      *
