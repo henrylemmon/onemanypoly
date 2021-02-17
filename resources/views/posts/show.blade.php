@@ -22,7 +22,7 @@
             <div class="ml-8 p-4 bg-red-500 text-white rounded">{{ session('comment-status') }}</div>
         @endif
         <div class="ml-8">
-            <form method="POST" action="/posts/{{ $post->id }}/comment">
+            <form method="POST" action="{{ route('comments.store', ['model' => 'post', 'id' => $post->id]) }}">
                 @csrf
                 <div class="mt-4">
                     @if ($post->comments->count() == 0)

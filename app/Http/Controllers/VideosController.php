@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class VideosController extends Controller
 {
     use Commentable;
 
-    protected $model = Post::class;
+    protected $model = Video::class;
 
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $videos = Video::all();
 
-        return view('posts.index', compact('posts'));
+        return view('videos.index', compact('videos'));
     }
 
     /**
@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('videos.create');
     }
 
     /**
@@ -41,34 +41,34 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create(
+        Video::create(
             request()->validate([
                 'title' => 'required',
-                'body' => 'required',
+                'url' => 'required',
             ])
         );
 
-        return redirect('/posts');
+        return redirect('/videos');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Video $video)
     {
-        return view('posts.show', compact('post'));
+        return view('videos.show', compact('video'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Video $video)
     {
         //
     }
@@ -77,10 +77,10 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Video $video)
     {
         //
     }
@@ -88,10 +88,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Video $video)
     {
         //
     }

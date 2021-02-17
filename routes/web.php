@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\VideoController;
-use App\Http\Controllers\PostCommentsController;
-use App\Http\Controllers\VideoCommentsController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\VideosController;
+use App\Http\Controllers\CommentsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,22 +29,22 @@ require __DIR__.'/auth.php';
 
 
 // Post
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/create', [PostController::class, 'create']);
-Route::get('/posts/{post}', [PostController::class, 'show']);
-Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts', [PostsController::class, 'index']);
+Route::get('/posts/create', [PostsController::class, 'create']);
+Route::get('/posts/{post}', [PostsController::class, 'show']);
+Route::post('/posts', [PostsController::class, 'store']);
 
 // Video
-Route::get('/videos', [VideoController::class, 'index']);
-Route::get('/videos/create', [VideoController::class, 'create']);
-Route::get('/videos/{video}', [VideoController::class, 'show']);
-Route::post('/videos', [VideoController::class, 'store']);
+Route::get('/videos', [VideosController::class, 'index']);
+Route::get('/videos/create', [VideosController::class, 'create']);
+Route::get('/videos/{video}', [VideosController::class, 'show']);
+Route::post('/videos', [VideosController::class, 'store']);
 
-// Post Comments
-Route::post('/posts/{post}/comment', [PostController::class, 'storeComment']);
+// Comments
+Route::post('/{model}/{id}/comments', [CommentsController::class, 'store'])
+    ->name('comments.store')
+    ->where('model', 'post|video');
 
-// Video Comments
-Route::post('/videos/{video}/comment', [VideoController::class, 'storeComment']);
 
 
 

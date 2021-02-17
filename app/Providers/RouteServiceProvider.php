@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Str;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -46,6 +47,16 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+        });
+
+        Route::bind('model', function ($model, $route) {
+            /*$model = '\App\Models\\' . Str::studly($model);
+
+            return $model::findOrFail($route->id);*/
+
+            $model = Str::studly($model);
+
+            return app("\App\Models\\$model")::findOrFail($route->id);
         });
     }
 
